@@ -3,9 +3,12 @@ package br.com.ada.t1322.tecnicasprogramacao.projeto;
 import br.com.ada.t1322.tecnicasprogramacao.projeto.controller.TaskController;
 import br.com.ada.t1322.tecnicasprogramacao.projeto.controller.TaskControllerImpl;
 import br.com.ada.t1322.tecnicasprogramacao.projeto.model.Task;
+import br.com.ada.t1322.tecnicasprogramacao.projeto.repository.TaskRepositoryImpl;
 import br.com.ada.t1322.tecnicasprogramacao.projeto.service.TaskServiceFactory;
+import br.com.ada.t1322.tecnicasprogramacao.projeto.service.TaskServiceImpl;
 import br.com.ada.t1322.tecnicasprogramacao.projeto.view.ConsoleApp;
 import br.com.ada.t1322.tecnicasprogramacao.projeto.view.ConsoleView;
+import br.com.ada.t1322.tecnicasprogramacao.projeto.view.IView;
 import br.com.ada.t1322.tecnicasprogramacao.projeto.view.View;
 
 import java.time.LocalDate;
@@ -13,10 +16,11 @@ import java.time.format.DateTimeFormatter;
 
 public class Application {
     public static void main(String[] args) {
+        TaskController controller;
         try (View view = new ConsoleView()) {
-            TaskController controller = new TaskControllerImpl(TaskServiceFactory.createTaskService());
+            new TaskControllerImpl((TaskServiceImpl) TaskServiceFactory.createTaskService());
 
-            initializeSampleTasks(controller);
+//            initializeSampleTasks(controller);
 
             ConsoleApp app = new ConsoleApp(view, controller);
             app.run();

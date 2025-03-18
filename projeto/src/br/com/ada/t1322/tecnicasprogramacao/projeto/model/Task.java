@@ -48,8 +48,11 @@ public class Task {
         return id;
     }
 
-    public void setId(Long id) {
+    Long netxId = 1L;
+    public Number setId(Long id) {
+        netxId++;
         this.id = id;
+        return netxId;
     }
 
     public String getTitle() {
